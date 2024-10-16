@@ -1,0 +1,78 @@
+{
+    "name": "vsc-light-dark-switch",
+    "displayName": "vsc-light-dark-switch",
+    "description": "",
+    "publisher": "lsteffen",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.88.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "vsc-light-dark-switch.toggle",
+                "title": "Toggle Dark/Light Mode"
+            },
+            {
+                "command": "vsc-light-dark-switch.activateLightMode",
+                "title": "Activate Light Mode"
+            },
+            {
+                "command": "vsc-light-dark-switch.activateDarkMode",
+                "title": "Activate Dark Mode"
+            }
+        ],
+        "configuration": {
+            "title": "Light/Dark Mode Switch",
+            "properties": {
+                "vsc-light-dark-switch.switchOnTimer": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Automatically switch themes when the time is right"
+                },
+                "vsc-light-dark-switch.darkThemeTime": {
+                    "type": "string",
+                    "format": "time",
+                    "enum": ["0:00", "0:30","1:00", "1:30","2:00", "2:30","3:00", "3:30","4:00", "4:30","5:00", "5:30","6:00", "6:30","7:00", "7:30","8:00", "8:30","9:00", "9:30","10:00", "10:30","11:00", "11:30","12:00", "12:30","13:00", "13:30","14:00", "14:30","15:00", "15:30","16:00", "16:30","17:00", "17:30","18:00", "18:30","19:00", "19:30","20:00", "20:30","21:00", "21:30","22:00", "22:30","23:00", "23:30"],
+                    "default": "19:00",
+                    "description": "Automatically switch to dark theme on set time"
+                },
+                "vsc-light-dark-switch.lightThemeTime": {
+                    "type": "string",
+                    "format": "time",
+                    "enum": ["0:00", "0:30","1:00", "1:30","2:00", "2:30","3:00", "3:30","4:00", "4:30","5:00", "5:30","6:00", "6:30","7:00", "7:30","8:00", "8:30","9:00", "9:30","10:00", "10:30","11:00", "11:30","12:00", "12:30","13:00", "13:30","14:00", "14:30","15:00", "15:30","16:00", "16:30","17:00", "17:30","18:00", "18:30","19:00", "19:30","20:00", "20:30","21:00", "21:30","22:00", "22:30","23:00", "23:30"],
+                    "default": "07:00",
+                    "description": "Automatically switch to light theme on set time"
+                }
+            }
+
+
+        }
+    },
+    "scripts": {
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "vscode-test",
+        "pack": "vsce pack --allow-missing-repository",
+        "load": "codium --uninstall-extension lsteffen.vsc-light-dark-switch; codium --install-extension *.vsix"
+    },
+    "devDependencies": {
+        "@types/node": "18.x",
+        "@typescript-eslint/eslint-plugin": "^7.7.1",
+        "@typescript-eslint/parser": "^7.7.1",
+        "eslint": "^8.57.0",
+        "typescript": "^5.4.5"
+    },
+    "dependencies": {
+        "@types/vscode": "^1.88.0"
+    }
+}
